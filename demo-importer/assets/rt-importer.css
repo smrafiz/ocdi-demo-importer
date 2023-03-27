@@ -1,0 +1,52 @@
+/**
+ * Demo Importer Styles.
+ */
+
+#wpbody-content + .ocdi {
+	margin-top: -65px;
+}
+
+.ocdi__content-container-content .ocdi-install-plugins-content-content .plugin-item.plugin-item-wpforms-lite,
+.ocdi__content-container-content .ocdi-install-plugins-content-content .plugin-item.plugin-item-all-in-one-seo-pack,
+.ocdi__content-container-content .ocdi-install-plugins-content-content .plugin-item.plugin-item-google-analytics-for-wordpress,
+.ocdi__content-container-content .ocdi-install-plugins-content-content .ocdi-content-notice,
+.ocdi__gl > hr:first-child,
+h1.ocdi__title-container-title + a,
+.ocdi__theme-about {
+	display: none !important;
+}
+
+.ocdi__intro-text .about-description {
+	margin-top: 20px;
+	color: #f00;
+	font-size: 20px;
+	line-height: 1.3;
+	font-weight: 600;
+	margin-bottom: 40px;
+	border-color: #f00;
+	border-style: dashed;
+	border-width: 1px 0;
+	padding: 10px 0;
+	text-align: center;
+}
+
+.ocdi__intro-text .about-description a {
+	text-decoration: none;
+	color: #1b3452;
+}
+
+.ocdi .ocdi__title-container {
+	justify-content: center;
+}
+
+@media only screen and (min-width: 1640px) {
+	.ocdi__gl .ocdi__gl-item {
+		flex-basis: calc(25% - 30px);
+	}
+}
+
+@media only screen and (min-width: 2000px) {
+	.ocdi__gl .ocdi__gl-item {
+		flex-basis: calc(20% - 30px);
+	}
+}
