@@ -4,10 +4,10 @@
  *
  * Core class used for installing demo packs using OCDI.
  *
- * @package radiustheme\Gymat_Core
+ * @package radiustheme\RT_OCDI
  */
 
-namespace radiustheme\RT_OCDI;
+namespace RadiusTheme\RT_OCDI;
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -82,39 +82,43 @@ class Ocdi_Demo_Importer {
 
 		$this->data['plugins'] = [
 			[
-				'name'     => 'Gymat Core',
-				'slug'     => 'gymat-core',
-				'source'   => get_template_directory_uri() . '/inc/plugins/gymat-core.zip',
-				'required' => true,
-			],
-			[
-				'name'     => 'RT Framework',
+				'name'     => 'RT Framework (Required)',
 				'slug'     => 'rt-framework',
 				'source'   => get_template_directory_uri() . '/inc/plugins/rt-framework.zip',
 				'required' => true,
 			],
 			[
-				'name'     => 'Breadcrumb NavXT',
+				'name'     => 'Breadcrumb NavXT (Required)',
 				'slug'     => 'breadcrumb-navxt',
 				'required' => true,
 			],
 			[
-				'name'     => 'Elementor Page Builder',
+				'name'     => 'Elementor Page Builder (Required)',
 				'slug'     => 'elementor',
 				'required' => true,
 			],
 			[
-				'name'     => 'WP Fluent Forms',
+				'name'     => 'WP Fluent Forms (Optional)',
 				'slug'     => 'fluentform',
 				'required' => false,
 			],
 			[
-				'name'     => 'Woocommerce',
+				'name'     => 'Woocommerce (Optional)',
 				'slug'     => 'woocommerce',
 				'required' => false,
 			],
 		];
 
+		// Init Demo Importer.
+		$this->init();
+	}
+
+	/**
+	 * Initializes the demo importer using the provided data.
+	 *
+	 * @return void
+	 */
+	public function init() {
 		$demo_importer = new Demo_Importer_Init();
 		$demo_importer->init( $this->data );
 	}
