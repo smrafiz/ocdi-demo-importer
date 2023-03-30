@@ -7,6 +7,8 @@
  * @package RadiusTheme\RT_OCDI
  */
 
+use FluentForm\Framework\Helpers\ArrayHelper;
+
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'This script cannot be accessed directly.' );
@@ -63,6 +65,7 @@ class RT_OCDI_Import_Actions {
 			->assign_front_page( $selected_import )
 			->assign_woo_pages()
 			->set_elementor_active_kit()
+			->import_fluent_forms()
 			->update_permalinks();
 
 		// Settings Update.
@@ -351,6 +354,100 @@ class RT_OCDI_Import_Actions {
 					]
 				);
 				update_option( 'elementor_active_kit', $page_id );
+			}
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Fluent Form imports.
+	 *
+	 * @return $this
+	 */
+	public function import_fluent_forms() {
+		if ( ! is_plugin_active( 'fluentform/fluentform.php' ) ) {
+			return $this;
+		}
+
+		global $wpdb;
+
+		$file        = wp_remote_get( $this->data['data_server'] . 'fluentform.json' );
+		$forms       = json_decode( $file['body'], true );
+		$form_table  = $wpdb->prefix . 'fluentform_forms';
+		$mata_table  = $wpdb->prefix . 'fluentform_form_meta';
+		$delete_form = $wpdb->query( 'TRUNCATE TABLE ' . $form_table );
+		$delete_meta = $wpdb->query( 'TRUNCATE TABLE ' . $mata_table );
+
+		if ( $delete_form && $delete_meta ) {
+			$insertedForms = [];
+
+			if ( $forms && is_array( $forms ) ) {
+				foreach ( $forms as $formItem ) {
+					// First of all make the form object.
+					$formFields = wp_json_encode( [] );
+
+					if ( $fields = ArrayHelper::get( $formItem, 'form', '' ) ) {
+						$formFields = wp_json_encode( $fields );
+					} elseif ( $fields = ArrayHelper::get( $formItem, 'form_fields', '' ) ) {
+						$formFields = wp_json_encode( $fields );
+					} else {
+					}
+
+					$form = [
+						'title'       => ArrayHelper::get( $formItem, 'title' ),
+						'id'          => ArrayHelper::get( $formItem, 'id' ),
+						'form_fields' => $formFields,
+						'status'      => ArrayHelper::get( $formItem, 'status', 'published' ),
+						'has_payment' => ArrayHelper::get( $formItem, 'has_payment', 0 ),
+						'type'        => ArrayHelper::get( $formItem, 'type', 'form' ),
+						'created_by'  => get_current_user_id(),
+					];
+
+					if ( ArrayHelper::get( $formItem, 'conditions' ) ) {
+						$form['conditions'] = ArrayHelper::get( $formItem, 'conditions' );
+					}
+
+					if ( isset( $formItem['appearance_settings'] ) ) {
+						$form['appearance_settings'] = $formItem['appearance_settings'];
+					}
+
+					// Insert the form to the DB.
+					$formId = wpFluent()->table( 'fluentform_forms' )->insert( $form );
+
+					$insertedForms[ $formId ] = [
+						'title'    => $form['title'],
+						'edit_url' => admin_url( 'admin.php?page=fluent_forms&route=editor&form_id=' . $formId ),
+					];
+
+					if ( isset( $formItem['metas'] ) ) {
+						foreach ( $formItem['metas'] as $metaData ) {
+							$settings = [
+								'form_id'  => $formId,
+								'meta_key' => $metaData['meta_key'],
+								'value'    => $metaData['value'],
+							];
+							wpFluent()->table( 'fluentform_form_meta' )->insert( $settings );
+						}
+					} else {
+						$oldKeys = [
+							'formSettings',
+							'notifications',
+							'mailchimp_feeds',
+							'slack',
+						];
+						foreach ( $oldKeys as $key ) {
+							if ( isset( $formItem[ $key ] ) ) {
+								$settings = [
+									'form_id'  => $formId,
+									'meta_key' => $key,
+									'value'    => json_encode( $formItem[ $key ] ),
+								];
+								wpFluent()->table( 'fluentform_form_meta' )->insert( $settings );
+							}
+						}
+					}
+				}
 			}
 		}
 

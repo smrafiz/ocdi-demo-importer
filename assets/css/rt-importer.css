@@ -12,8 +12,34 @@
 .ocdi__content-container-content .ocdi-install-plugins-content-content .ocdi-content-notice,
 .ocdi__gl > hr:first-child,
 h1.ocdi__title-container-title + a,
-.ocdi__theme-about {
+.ocdi__theme-about-screenshots,
+.ocdi__theme-about .top-content {
 	display: none !important;
+}
+
+.ocdi__content-container .ocdi__theme-about .ocdi-import-mode-switch {
+	display: inline-block;
+	text-decoration: none;
+	font-size: 13px;
+	line-height: 2.15384615;
+	min-height: 30px;
+	margin: 0;
+	padding: 0 10px;
+	cursor: pointer;
+	border-width: 1px;
+	border-style: solid;
+	-webkit-appearance: none;
+	border-radius: 3px;
+	white-space: nowrap;
+	box-sizing: border-box;
+	transition: all 0.3s;
+}
+
+.ocdi__theme-about .ocdi-import-mode-switch:hover,
+.ocdi__theme-about .ocdi-import-mode-switch:focus {
+	background: #2271b1;
+	border-color: #2271b1;
+	color: #fff;
 }
 
 .ocdi__intro-text .about-description {
@@ -23,13 +49,14 @@ h1.ocdi__title-container-title + a,
 	font-weight: 600;
 	margin-bottom: 0;
 }
+
 .ocdi__intro-text {
 	display: flex;
 	background: #fff;
 	margin-bottom: 50px;
 	padding: 20px 5px 20px 20px;
 	border: 1px solid #e3e3e3;
-	box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
 	border-left: 6px solid #2271b1;
 	justify-content: space-between;
 	align-items: center;
@@ -116,7 +143,7 @@ h1.ocdi__title-container-title + a,
 	opacity: 0;
 }
 
-.demo-importer-system-status .demo-importer-status-table  {
+.demo-importer-system-status .demo-importer-status-table {
 	margin-bottom: 1em;
 }
 
@@ -175,14 +202,15 @@ h1.ocdi__title-container-title + a,
 	margin-top: -10px;
 	text-align: center;
 }
+
 .demo-importer-system-status h2 {
 	padding: 10px 20px;
 	background: #fff;
 	margin-top: 30px;
 	border: 1px solid #c3c4c7;
 	border-left: 4px solid #2271b1;
-	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.04);
-	box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
 }
 
 .demo-importer-system-status .demo-importer-status-table td.error {

@@ -161,7 +161,7 @@ class RT_OCDI {
 		?>
 		<div class="ocdi__intro-text">
 			<div class="col intro-text-col">
-				<p class="about-description">Please note that, no data will be lost upon importing demo data, but it is recommended to use one click demo data for a new website. If one click demo import does not work please try manual demo import.</p>
+				<p class="about-description">Please note that importing demo data should not result in any data loss, but it is recommended to use one-click demo data to set up a new website. In case the one-click demo import does not work, you can try manual demo import.</p>
 			</div>
 			<div class="col intro-btn-col">
 				<div class="btn-wrapper">
