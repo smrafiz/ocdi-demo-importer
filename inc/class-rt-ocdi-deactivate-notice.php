@@ -4,10 +4,8 @@
  *
  * Class to display the plugin deactivation notice.
  *
- * @package radiustheme\RT_OCDI
+ * @package RadiusTheme\RT_OCDI
  */
-
-namespace RadiusTheme\RT_OCDI;
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -17,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Demo Importer Deactivation Notice.
  */
-class Demo_Importer_Deactivate_Notice {
+class RT_OCDI_Deactivate_Notice {
 	/**
 	 * Class Init.
 	 *

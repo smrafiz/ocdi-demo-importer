@@ -2,10 +2,8 @@
 /**
  * Admin View: Page - System Status
  *
- * @package ThemeGrill_Demo_Importer
+ * @package RadiusTheme\RT_OCDI
  */
-
-namespace RadiusTheme\RT_OCDI;
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -108,7 +106,7 @@ $memory_limit       = ini_get( 'memory_limit' );
 		<?php endif; ?>
 		<tr>
 			<td><?php esc_html_e( 'Data Server Connection:', 'gymat' ); ?></td>
-			<td><span class="data-server"><?php echo Demo_Importer_Fns::get_data_server_status(); ?></span></td>
+			<td><span class="data-server"><?php echo RT_OCDI_Helpers::get_data_server_status(); ?></span></td>
 			<td></td>
 		</tr>
 		</tbody>
@@ -253,7 +251,7 @@ $memory_limit       = ini_get( 'memory_limit' );
 		</thead>
 		<tbody>
 		<?php
-		$active_plugin_lists = Demo_Importer_Fns::get_active_plugins();
+		$active_plugin_lists = RT_OCDI_Helpers::get_active_plugins();
 
 		// Display the active plugin lists.
 		foreach ( $active_plugin_lists as $active_plugin_list ) :
@@ -300,7 +298,7 @@ $memory_limit       = ini_get( 'memory_limit' );
 		</thead>
 		<tbody>
 		<?php
-		$inactive_plugin_lists = Demo_Importer_Fns::get_inactive_plugins();
+		$inactive_plugin_lists = RT_OCDI_Helpers::get_inactive_plugins();
 
 		// Display the inactive plugin lists.
 		foreach ( $inactive_plugin_lists as $inactive_plugin_list ) :

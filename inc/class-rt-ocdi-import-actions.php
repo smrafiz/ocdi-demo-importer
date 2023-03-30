@@ -1,13 +1,11 @@
 <?php
 /**
- * Demo Importer Init.
+ * Demo Importer Actions.
  *
- * Init class used for installing demo packs using OCDI.
+ * Demo Importer Actions before and after OCDI Demo Import.
  *
- * @package radiustheme\RT_OCDI
+ * @package RadiusTheme\RT_OCDI
  */
-
-namespace RadiusTheme\RT_OCDI;
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -15,9 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Demo Importer Init.
+ * Demo Importer Actions.
  */
-class Demo_Importer_Init {
+class RT_OCDI_Import_Actions {
 	/**
 	 * Import Data.
 	 *
@@ -26,118 +24,50 @@ class Demo_Importer_Init {
 	private $data = [];
 
 	/**
-	 * The admin page slug for the one-click demo importer.
-	 *
-	 * @var string
-	 */
-	private $page = 'one-click-demo-import';
-
-	/**
-	 * Demo Importer Init.
-	 *
-	 * Init class used for installing demo packs using OCDI.
-	 *
-	 * @param mixed $data The data to be used in the initialization process.
-	 * @return void
-	 */
-	public function init( $data ) {
-		// Demo Data.
-		$this->data = $data;
-
-		// Required Imports.
-		$this->imports();
-
-		// If OCDI plugin is not active, return.
-		if ( ! Demo_Importer_Fns::is_ocdi_active() ) {
-			return;
-		}
-
-		// Init Classes.
-		$this->init_classes();
-
-		// Init Hooks.
-		$this->init_hooks();
-	}
-
-	/**
-	 * Includes the necessary files and functions.
+	 * Class Init.
 	 *
 	 * @return void
 	 */
-	public function imports() {
-		include_once 'demo-importer-fns.php';
-		include_once 'demo-importer-status.php';
-		include_once 'demo-importer-actions.php';
-		include_once 'demo-importer-deactivate-notice.php';
+	public function init() {
+		// Get Import Data.
+		$this->data = ( new RT_OCDI_Theme_Config() )->get_import_data();
+
+		add_filter( 'ocdi/before_content_import', [ $this, 'before_import_actions' ] );
+		add_filter( 'ocdi/after_import', [ $this, 'after_import_actions' ] );
 	}
 
 	/**
-	 * Initializes the necessary classes for the demo importer.
+	 * Executes cleanup operations and other actions that need to be performed before the demo import.
 	 *
+	 * @return $this
+	 */
+	public function before_import_actions() {
+		$this
+			->cleanups()
+			->delete_pages()
+			->draft_post();
+
+		return $this;
+	}
+
+	/**
+	 * Performs actions that need to be executed after a demo pack is imported using OCDI. This includes assigning menus,
+	 * updating WooCommerce pages, assigning front and blog pages, and flushing rewrite rules.
+	 *
+	 * @param string $selected_import The name of the imported file.
 	 * @return void
 	 */
-	public function init_classes() {
-		$classes = [
-			Demo_Importer_Status::class,
-			Demo_Importer_Actions::class,
-			Demo_Importer_Deactivate_Notice::class,
-		];
+	public function after_import_actions( $selected_import ) {
+		$this
+			->assign_menus()
+			->assign_front_page( $selected_import )
+			->assign_woo_pages()
+			->set_elementor_active_kit()
+			->update_permalinks();
 
-		foreach ( $classes as $class ) {
-			( new $class() )->init();
-		}
-	}
-
-	/**
-	 * Initializes the necessary hooks for the demo importer, including scripts, filters, and actions.
-	 *
-	 * @return void
-	 */
-	public function init_hooks() {
-		// Scripts.
-		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_backend_scripts' ] );
-
-		// Recommended Plugins.
-		add_filter( 'ocdi/register_plugins', [ $this, 'recommended_plugins' ] );
-
-		// Import files.
-		add_filter( 'ocdi/import_files', [ $this, 'import_files' ] );
-
-		// Intro Text.
-		add_filter( 'ocdi/plugin_intro_text', [ $this, 'intro_text' ] );
-
-		// Rewrite Flush Check.
-		add_action( 'init', [ $this, 'rewrite_flush_check' ] );
-
-		// Remove Notices.
-		add_action( 'admin_init', [ $this, 'remove_all_notices' ] );
-	}
-
-	/**
-	 * Enqueue backend demo importer scripts and styles.
-	 *
-	 * @param string $hook The current admin page.
-	 * @return void
-	 */
-	public function enqueue_backend_scripts( $hook ) {
-		if ( ( 'appearance_page_' . $this->page === $hook ) || ( 'appearance_page_rt-demo-importer-status' === $hook ) ) {
-			wp_enqueue_style( 'rt-ocdi-importer', GYMAT_CORE_BASE_URL . 'demo-importer/assets/rt-importer.css', '', '1.0.0' );
-			wp_enqueue_script( 'rt-ocdi-importer', GYMAT_CORE_BASE_URL . 'demo-importer/assets/rt-importer.js', [ 'jquery' ], '1.0.0', true );
-		}
-	}
-
-	/**
-	 * Recommended plugins for the theme.
-	 *
-	 * @param array $plugins An associative array of plugin info.
-	 * @return array Recommended plugins.
-	 */
-	public function recommended_plugins( $plugins ) {
-		if ( empty( $this->data['plugins'] ) ) {
-			return $plugins;
-		}
-
-		return $this->data['plugins'];
+		// Settings Update.
+		update_option( $this->data['theme'] . '_ocdi_importer_rewrite_flash', true );
+		update_option( 'rt_demo_importer_activated', 'true' );
 	}
 
 	/**
@@ -244,29 +174,6 @@ class Demo_Importer_Init {
 		}
 
 		return $this;
-	}
-
-	/**
-	 * Generates an array of import files for OCDI based on the demo pack data.
-	 *
-	 * @return array[] An array of import files in the format recognized by OCDI.
-	 */
-	public function import_files() {
-		$import_files = [];
-		$pages        = $this->data['demo'];
-
-		foreach ( $pages as $page ) {
-			$import_files[] = [
-				'import_file_name'           => $page['name'],
-				'import_preview_image_url'   => $page['preview'],
-				'preview_url'                => $page['demo'],
-				'import_file_url'            => $this->data['data_server'] . 'content.xml',
-				'import_widget_file_url'     => $this->data['data_server'] . 'widgets.wie',
-				'import_customizer_file_url' => $this->data['data_server'] . 'customizer.dat',
-			];
-		}
-
-		return $import_files;
 	}
 
 	/**
@@ -460,55 +367,5 @@ class Demo_Importer_Init {
 		update_option( 'permalink_structure', '/%postname%/' );
 
 		return $this;
-	}
-
-	/**
-	 * Returns a custom HTML block to be added to the plugin intro text.
-	 *
-	 * @return string HTML code for the custom intro text.
-	 */
-	public function intro_text() {
-		ob_start();
-		?>
-		<div class="ocdi__intro-text">
-			<div class="col intro-text-col">
-				<p class="about-description">Please note that, no data will be lost upon importing demo data, but it is recommended to use one click demo data for a new website. If one click demo import does not work please try manual demo import.</p>
-			</div>
-			<div class="col intro-btn-col">
-				<div class="btn-wrapper">
-					<a class="button button-primary" href="<?php echo esc_url( $this->data['manual_import_doc'] ); ?>" target="_blank">Check Documentation</a>
-					<a class="button button-primary" href="<?php echo esc_url( admin_url( 'themes.php?page=rt-demo-importer-status' ) ); ?>">Check System Status</a>
-				</div>
-			</div>
-		</div>
-		<?php
-		return ob_get_clean();
-	}
-
-	/**
-	 * Check if the option to flush the rewrite rules has been set, and if so, flushes them and deletes the option.
-	 *
-	 * @return void
-	 */
-	public function rewrite_flush_check() {
-		$option = $this->data['theme'] . '_ocdi_importer_rewrite_flash';
-
-		if ( true === get_option( $option ) ) {
-			flush_rewrite_rules();
-			delete_option( $option );
-		}
-	}
-
-	/**
-	 * Remove all admin notices from the demo import page.
-	 *
-	 * @return void
-	 */
-	public function remove_all_notices() {
-		global $pagenow;
-
-		if ( $pagenow === 'themes.php' && isset( $_GET['page'] ) && ( $this->page === $_GET['page'] || 'rt-demo-importer-status' === $_GET['page'] ) ) {
-			remove_all_actions( 'admin_notices' );
-		}
 	}
 }

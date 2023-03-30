@@ -4,10 +4,8 @@
  *
  * Responsible for demo importer status page.
  *
- * @package radiustheme\RT_OCDI
+ * @package RadiusTheme\RT_OCDI
  */
-
-namespace RadiusTheme\RT_OCDI;
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -17,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Demo Importer Status.
  */
-class Demo_Importer_Status {
+class RT_OCDI_System_Status {
 	/**
 	 * Class Init.
 	 *
@@ -51,7 +49,7 @@ class Demo_Importer_Status {
 		?>
 		<div class="wrap demo-importer-status">
 			<?php
-			Demo_Importer_Fns::system_status();
+			RT_OCDI_Helpers::system_status();
 			?>
 		</div>
 		<?php

@@ -4,10 +4,8 @@
  *
  * Helper functions to be used for Demo Importer.
  *
- * @package radiustheme\RT_OCDI
+ * @package RadiusTheme\RT_OCDI
  */
-
-namespace RadiusTheme\RT_OCDI;
 
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -17,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Demo Importer Helpers.
  */
-class Demo_Importer_Fns {
+class RT_OCDI_Helpers {
 	/**
 	 * Handles the display of System Status.
 	 */
