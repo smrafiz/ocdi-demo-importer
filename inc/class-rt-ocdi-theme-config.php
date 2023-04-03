@@ -59,27 +59,27 @@ class RT_OCDI_Theme_Config {
 	private function demos() {
 		$this->data['demo'] = [
 			[
-				'name'    => __( 'Home 1', 'my-theme-text-domain' ),
+				'name'    => __( 'Home 1', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot1.jpg',
 				'demo'    => 'https://www.radiustheme.com/demo/wordpress/themes/gymat/',
 			],
 			[
-				'name'    => __( 'Home 2', 'my-theme-text-domain' ),
+				'name'    => __( 'Home 2', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot2.jpg',
 				'demo'    => 'https://www.radiustheme.com/demo/wordpress/themes/gymat/home-2/',
 			],
 			[
-				'name'    => __( 'Home 3', 'my-theme-text-domain' ),
+				'name'    => __( 'Home 3', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot3.jpg',
 				'demo'    => 'https://www.radiustheme.com/demo/wordpress/themes/gymat/home-3/',
 			],
 			[
-				'name'    => __( 'Home 4', 'my-theme-text-domain' ),
+				'name'    => __( 'Home 4', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot4.jpg',
 				'demo'    => 'https://www.radiustheme.com/demo/wordpress/themes/gymat/home-4/',
 			],
 			[
-				'name'    => __( 'Home 5', 'my-theme-text-domain' ),
+				'name'    => __( 'Home 5', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot5.jpg',
 				'demo'    => 'https://www.radiustheme.com/demo/wordpress/themes/gymat/home-5/',
 			],

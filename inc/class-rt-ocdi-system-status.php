@@ -32,8 +32,8 @@ class RT_OCDI_System_Status {
 	 */
 	public function admin_menu() {
 		add_theme_page(
-			__( 'Demo Importer Status', 'gymat' ),
-			__( 'Demo Importer Status', 'gymat' ),
+			esc_html__( 'Demo Importer Status', 'my-plugin-text-domain' ),
+			esc_html__( 'Demo Importer Status', 'my-plugin-text-domain' ),
 			'switch_themes',
 			'rt-demo-importer-status',
 			[ $this, 'status_menu' ]
