@@ -48,14 +48,14 @@ class RT_OCDI_Deactivate_Notice {
 				<?php
 				_e(
 					'It seems you\'ve imported the theme demo data successfully. So, the purpose of <b>One Click Demo Import</b> plugin is fulfilled and it has no more use. <br />If you\'re satisfied with theme demo data import, you can safely deactivate it by clicking below \'Deactivate\' button.',
-					'gymat'
+					'my-plugin-text-domain'
 				);
 				?>
 			</p>
 
 			<p class="links">
 				<a href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'deactivate-one-click-demo-import', 'true' ), 'deactivate_rt_ocdi', '_deactivate_rt_ocdi_nonce' ) ); ?>" class="btn button-primary">
-					<span><?php esc_html_e( 'Deactivate Demo Importer Plugun', 'gymat' ); ?></span>
+					<span><?php esc_html_e( 'Deactivate Demo Importer Plugun', 'my-plugin-text-domain' ); ?></span>
 				</a>
 				<a class="btn button-secondary" href="?nag_rt_demo_importer_plugin_deactivate_notice=0">Dismiss This Notice</a>
 			</p>
@@ -72,7 +72,7 @@ class RT_OCDI_Deactivate_Notice {
 		// Deactivate the plugin.
 		if ( isset( $_GET['deactivate-one-click-demo-import'] ) && isset( $_GET['_deactivate_rt_ocdi_nonce'] ) ) {
 			if ( ! wp_verify_nonce( $_GET['_deactivate_rt_ocdi_nonce'], 'deactivate_rt_ocdi' ) ) {
-				wp_die( __( 'Action failed. Please refresh the page and retry.', 'gymat' ) );
+				wp_die( __( 'Action failed. Please refresh the page and retry.', 'my-plugin-text-domain' ) );
 			}
 
 			// Get the plugin.

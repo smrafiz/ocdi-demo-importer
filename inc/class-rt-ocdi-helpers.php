@@ -34,9 +34,9 @@ class RT_OCDI_Helpers {
 		$http_response_code  = wp_remote_retrieve_response_code( $package_file_server );
 
 		if ( is_wp_error( $package_file_server ) || 200 !== (int) $http_response_code ) {
-			$output = '<span class="failure">' . __( 'Connection Error', 'gymat' ) . '</span>';
+			$output = '<span class="failure">' . __( 'Connection Error', 'my-plugin-text-domain' ) . '</span>';
 		} else {
-			$output = '<span class="success">' . __( 'Connected', 'gymat' ) . '</span>';
+			$output = '<span class="success">' . __( 'Connected', 'my-plugin-text-domain' ) . '</span>';
 		}
 
 		return $output;
