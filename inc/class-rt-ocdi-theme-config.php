@@ -44,11 +44,11 @@ class RT_OCDI_Theme_Config {
 	 * @return $this
 	 */
 	private function theme_data() {
-		$this->data['theme']             = 'Gymat';
-		$this->data['data_server']       = 'https://radiustheme.net/rafiz/demos/gymat/';
-		$this->data['demo_link']         = 'https://radiustheme.com/demo/wordpress/themes/gymat/';
-		$this->data['import_doc']        = 'https://radiustheme.com/demo/wordpress/themes/gymat/docs/#section-4';
-		$this->data['elementor_support'] = [
+		$this->data['theme']                 = 'Gymat';
+		$this->data['data_server']           = 'https://radiustheme.com/demo/wordpress/demo-content/gymat/ocdi/';
+		$this->data['demo_link']             = 'https://radiustheme.com/demo/wordpress/themes/gymat/';
+		$this->data['import_doc_link']       = 'https://radiustheme.com/demo/wordpress/themes/gymat/docs/#section-4';
+		$this->data['elementor_cpt_support'] = [
 			'post',
 			'page',
 			'gymat_class',

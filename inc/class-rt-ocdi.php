@@ -165,7 +165,7 @@ class RT_OCDI {
 			</div>
 			<div class="col intro-btn-col">
 				<div class="btn-wrapper">
-					<a class="button button-primary" href="<?php echo esc_url( $this->data['import_doc'] ); ?>" target="_blank">Check Documentation</a>
+					<a class="button button-primary" href="<?php echo esc_url( $this->data['import_doc_link'] ); ?>" target="_blank">Check Documentation</a>
 					<a class="button button-primary" href="<?php echo esc_url( admin_url( 'themes.php?page=rt-demo-importer-status' ) ); ?>">Check System Status</a>
 				</div>
 			</div>

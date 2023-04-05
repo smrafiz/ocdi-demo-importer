@@ -69,8 +69,8 @@ class RT_OCDI_Import_Actions {
 			->set_elementor_active_kit()
 			->set_elementor_settings()
 			->import_fluent_forms()
-			->update_permalinks()
-			->settings_flag();
+			->settings_flag()
+			->update_permalinks();
 	}
 
 	/**
@@ -366,7 +366,7 @@ class RT_OCDI_Import_Actions {
 	 * @return $this
 	 */
 	public function set_elementor_settings() {
-		$post_type = ! empty( $this->data['elementor_support'] ) ? $this->data['elementor_support'] : [ 'post', 'page' ];
+		$post_type = ! empty( $this->data['elementor_cpt_support'] ) ? $this->data['elementor_cpt_support'] : [ 'post', 'page' ];
 
 		if ( ! empty( $post_type ) ) {
 			update_option( 'elementor_cpt_support', $post_type );
@@ -482,6 +482,7 @@ class RT_OCDI_Import_Actions {
 	 */
 	public function update_permalinks() {
 		update_option( 'permalink_structure', '/%postname%/' );
+		flush_rewrite_rules();
 
 		return $this;
 	}
@@ -489,11 +490,13 @@ class RT_OCDI_Import_Actions {
 	/**
 	 * Sets some flags.
 	 *
-	 * @return void
+	 * @return $this
 	 */
 	public function settings_flag() {
 		update_option( $this->data['theme'] . '_ocdi_importer_rewrite_flash', true );
 		update_option( 'rt_demo_importer_activated', 'true' );
+
+		return $this;
 	}
 
 	/**
