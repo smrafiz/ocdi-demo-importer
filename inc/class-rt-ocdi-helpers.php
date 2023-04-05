@@ -80,4 +80,37 @@ class RT_OCDI_Helpers {
 
 		return is_plugin_active( 'one-click-demo-import/one-click-demo-import.php' );
 	}
+
+	/**
+	 * Get page by title.
+	 *
+	 * @param string $title Page name.
+	 * @param string $post_type Post type.
+	 *
+	 * @return WP_Post|null
+	 */
+	public static function get_page_by_title( $title, $post_type = 'page' ) {
+		$query = new WP_Query(
+			[
+				'post_type'              => esc_html( $post_type ),
+				'title'                  => esc_html( $title ),
+				'post_status'            => 'all',
+				'posts_per_page'         => 1,
+				'no_found_rows'          => true,
+				'ignore_sticky_posts'    => true,
+				'update_post_term_cache' => false,
+				'update_post_meta_cache' => false,
+				'orderby'                => 'post_date ID',
+				'order'                  => 'ASC',
+			]
+		);
+
+		if ( ! empty( $query->post ) ) {
+			$page_got_by_title = $query->post;
+		} else {
+			$page_got_by_title = null;
+		}
+
+		return $page_got_by_title;
+	}
 }

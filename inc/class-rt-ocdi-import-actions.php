@@ -60,17 +60,17 @@ class RT_OCDI_Import_Actions {
 	 * @return void
 	 */
 	public function after_import_actions( $selected_import ) {
+
 		$this
+			->replace_urls_in_database( $this->data['demo_link'], home_url('/') )
 			->assign_menus()
 			->assign_front_page( $selected_import )
 			->assign_woo_pages()
 			->set_elementor_active_kit()
+			->set_elementor_settings()
 			->import_fluent_forms()
-			->update_permalinks();
-
-		// Settings Update.
-		update_option( $this->data['theme'] . '_ocdi_importer_rewrite_flash', true );
-		update_option( 'rt_demo_importer_activated', 'true' );
+			->update_permalinks()
+			->settings_flag();
 	}
 
 	/**
@@ -147,7 +147,7 @@ class RT_OCDI_Import_Actions {
 		];
 
 		foreach ( $pages_to_delete as $page_title ) {
-			$page = get_page_by_title( $page_title );
+			$page = RT_OCDI_Helpers::get_page_by_title( $page_title );
 
 			if ( $page ) {
 				wp_delete_post( $page->ID, true );
@@ -164,7 +164,7 @@ class RT_OCDI_Import_Actions {
 	 */
 	public function draft_post() {
 		// Update the Hello World! post by making it a draft.
-		$hello_world = get_page_by_title( 'Hello World!', OBJECT, 'post' );
+		$hello_world = RT_OCDI_Helpers::get_page_by_title( 'Hello World!', 'post' );
 
 		if ( $hello_world ) {
 			$hello_world_arg = [
@@ -208,8 +208,8 @@ class RT_OCDI_Import_Actions {
 	 */
 	public function assign_front_page( $selected_import ) {
 		// Assign front page and posts page (blog page).
-		$front = get_page_by_title( $selected_import['import_file_name'] );
-		$blog  = get_page_by_title( 'Blog' );
+		$front = RT_OCDI_Helpers::get_page_by_title( $selected_import['import_file_name'] );
+		$blog  = RT_OCDI_Helpers::get_page_by_title( 'Blog' );
 
 		update_option( 'show_on_front', 'page' );
 		update_option( 'page_on_front', $front->ID );
@@ -361,6 +361,26 @@ class RT_OCDI_Import_Actions {
 	}
 
 	/**
+	 * Sets the Elementor settings.
+	 *
+	 * @return $this
+	 */
+	public function set_elementor_settings() {
+		$post_type = ! empty( $this->data['elementor_support'] ) ? $this->data['elementor_support'] : [ 'post', 'page' ];
+
+		if ( ! empty( $post_type ) ) {
+			update_option( 'elementor_cpt_support', $post_type );
+		}
+
+		// Other Settings.
+		update_option( 'elementor_disable_color_schemes', 'yes' );
+		update_option( 'elementor_disable_typography_schemes', 'yes' );
+		update_option( 'elementor_experiment-e_swiper_latest', 'inactive' );
+
+		return $this;
+	}
+
+	/**
 	 * Fluent Form imports.
 	 *
 	 * @return $this
@@ -462,6 +482,47 @@ class RT_OCDI_Import_Actions {
 	 */
 	public function update_permalinks() {
 		update_option( 'permalink_structure', '/%postname%/' );
+
+		return $this;
+	}
+
+	/**
+	 * Sets some flags.
+	 *
+	 * @return void
+	 */
+	public function settings_flag() {
+		update_option( $this->data['theme'] . '_ocdi_importer_rewrite_flash', true );
+		update_option( 'rt_demo_importer_activated', 'true' );
+	}
+
+	/**
+	 * Replaces URL.
+	 *
+	 * @param string $old_url Old URL.
+	 * @param string $new_url New URL.
+	 *
+	 * @return $this
+	 */
+	public function replace_urls_in_database( $old_url, $new_url ) {
+		global $wpdb;
+
+		// Table names and columns to update
+		$tables = array(
+			$wpdb->prefix . 'posts' => array('post_content'),
+			$wpdb->prefix . 'postmeta' => array('meta_value'),
+			$wpdb->prefix . 'options' => array('option_value'),
+			$wpdb->prefix . 'comments' => array('comment_content'),
+			$wpdb->prefix . 'commentmeta' => array('meta_value')
+		);
+
+		// Search and replace URLs in all tables and columns
+		foreach ( $tables as $table => $columns ) {
+			foreach ( $columns as $column ) {
+				$sql = "UPDATE $table SET $column = replace($column, '$old_url', '$new_url')";
+				$wpdb->query( $sql );
+			}
+		}
 
 		return $this;
 	}
