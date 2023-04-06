@@ -8,6 +8,8 @@
  */
 
 // Do not allow directly accessing this file.
+use Elementor\Utils;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'This script cannot be accessed directly.' );
 }

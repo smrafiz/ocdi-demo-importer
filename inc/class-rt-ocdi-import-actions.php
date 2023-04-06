@@ -60,9 +60,8 @@ class RT_OCDI_Import_Actions {
 	 * @return void
 	 */
 	public function after_import_actions( $selected_import ) {
-
 		$this
-			->replace_urls_in_database( $this->data['demo_link'], home_url('/') )
+			->replace_urls_in_database()
 			->assign_menus()
 			->assign_front_page( $selected_import )
 			->assign_woo_pages()
@@ -502,30 +501,81 @@ class RT_OCDI_Import_Actions {
 	/**
 	 * Replaces URL.
 	 *
-	 * @param string $old_url Old URL.
-	 * @param string $new_url New URL.
-	 *
 	 * @return $this
 	 */
-	public function replace_urls_in_database( $old_url, $new_url ) {
+	public function replace_urls_in_database() {
 		global $wpdb;
 
-		// Table names and columns to update
-		$tables = array(
-			$wpdb->prefix . 'posts' => array('post_content'),
-			$wpdb->prefix . 'postmeta' => array('meta_value'),
-			$wpdb->prefix . 'options' => array('option_value'),
-			$wpdb->prefix . 'comments' => array('comment_content'),
-			$wpdb->prefix . 'commentmeta' => array('meta_value')
-		);
+		$urls = [
+			'slash'   => [
+				'old' => trailingslashit( $this->data['demo_link'] ),
+				'new' => home_url( '/' ),
+			],
+			'unslash' => [
+				'old' => untrailingslashit( $this->data['demo_link'] ),
+				'new' => home_url(),
+			],
+		];
 
-		// Search and replace URLs in all tables and columns
-		foreach ( $tables as $table => $columns ) {
-			foreach ( $columns as $column ) {
-				$sql = "UPDATE $table SET $column = replace($column, '$old_url', '$new_url')";
-				$wpdb->query( $sql );
+		foreach ( $urls as $url ) {
+			$old_url = $url['old'];
+			$new_url = $url['new'];
+
+			// Table names and columns to update.
+			$tables = [
+				$wpdb->prefix . 'posts'       => [ 'post_content' ],
+				$wpdb->prefix . 'postmeta'    => [ 'meta_value' ],
+				$wpdb->prefix . 'options'     => [ 'option_value' ],
+				$wpdb->prefix . 'comments'    => [ 'comment_content' ],
+				$wpdb->prefix . 'commentmeta' => [ 'meta_value' ],
+			];
+
+			// Search and replace URLs in all tables and columns.
+			foreach ( $tables as $table => $columns ) {
+				foreach ( $columns as $column ) {
+					$sql = "UPDATE $table SET $column = replace($column, '$old_url', '$new_url')";
+					$wpdb->query( $sql );
+				}
 			}
+
+			// Search and replace URLs in postmeta.
+			$wpdb->query(
+				"UPDATE {$wpdb->postmeta} " .
+				"SET `meta_value` = REPLACE(`meta_value`, '" . str_replace( '/', '\\\/', $old_url ) . "', '" . str_replace( '/', '\\\/', $new_url ) . "') " .
+				"WHERE `meta_key` = '_elementor_data' AND `meta_value` LIKE '[%' ;"
+			);
+
+			// Replace GUID.
+			$query = $wpdb->prepare(
+				"
+					UPDATE $wpdb->posts
+					SET guid = REPLACE(guid, %s, %s)
+					WHERE guid LIKE %s",
+				$old_url,
+				$new_url,
+				$wpdb->esc_like( $old_url ) . '%'
+			);
+			$wpdb->query( $query );
 		}
+
+		// Commenter email.
+		$commenter_email     = $this->data['email_to_replace'];
+		$commenter_new_email = get_bloginfo( 'admin_email' );
+		$commenter_new_url   = home_url();
+
+		$query = $wpdb->prepare(
+			"
+			UPDATE $wpdb->comments
+			SET comment_author_email = %s, comment_author_url = %s
+			WHERE comment_author_email = %s",
+			$commenter_new_email,
+			$commenter_new_url,
+			$commenter_email
+		);
+		$wpdb->query( $query );
+
+		// Customizer.
+		set_theme_mod( 'online_button_link', '/contact/' );
 
 		return $this;
 	}

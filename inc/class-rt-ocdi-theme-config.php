@@ -48,6 +48,7 @@ class RT_OCDI_Theme_Config {
 		$this->data['data_server']           = 'https://radiustheme.com/demo/wordpress/demo-content/gymat/ocdi/';
 		$this->data['demo_link']             = 'https://radiustheme.com/demo/wordpress/themes/gymat/';
 		$this->data['import_doc_link']       = 'https://radiustheme.com/demo/wordpress/themes/gymat/docs/#section-4';
+		$this->data['email_to_replace']      = 'techlabpro24@gmail.com';
 		$this->data['elementor_cpt_support'] = [
 			'post',
 			'page',
