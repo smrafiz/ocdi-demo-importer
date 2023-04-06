@@ -69,7 +69,8 @@ class RT_OCDI_Import_Actions {
 			->set_elementor_settings()
 			->import_fluent_forms()
 			->settings_flag()
-			->update_permalinks();
+			->update_permalinks()
+			->extra();
 	}
 
 	/**
@@ -574,8 +575,18 @@ class RT_OCDI_Import_Actions {
 		);
 		$wpdb->query( $query );
 
-		// Customizer.
-		set_theme_mod( 'online_button_link', '/contact/' );
+		return $this;
+	}
+
+	/**
+	 * Extra actions specific to theme.
+	 *
+	 * @return $this
+	 */
+	public function extra() {
+		if ( 'Gymat' === $this->data['theme'] ) {
+			set_theme_mod( 'online_button_link', home_url( 'contact' ) );
+		}
 
 		return $this;
 	}
