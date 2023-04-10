@@ -493,7 +493,7 @@ class RT_OCDI_Import_Actions {
 	 * @return $this
 	 */
 	public function settings_flag() {
-		update_option( $this->data['theme'] . '_ocdi_importer_rewrite_flash', true );
+		update_option( $this->data['theme'] . '_ocdi_importer_rewrite_flash', 'true' );
 		update_option( 'rt_demo_importer_activated', 'true' );
 
 		return $this;

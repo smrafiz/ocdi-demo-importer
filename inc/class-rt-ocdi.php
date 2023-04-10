@@ -184,7 +184,7 @@ class RT_OCDI {
 	public function rewrite_flush_check() {
 		$option = $this->data['theme'] . '_ocdi_importer_rewrite_flash';
 
-		if ( true === get_option( $option ) ) {
+		if ( 'true' === get_option( $option ) ) {
 			flush_rewrite_rules();
 			delete_option( $option );
 		}
