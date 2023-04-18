@@ -57,6 +57,7 @@ class RT_OCDI_Import_Actions {
 	 * updating WooCommerce pages, assigning front and blog pages, and flushing rewrite rules.
 	 *
 	 * @param string $selected_import The name of the imported file.
+	 *
 	 * @return void
 	 */
 	public function after_import_actions( $selected_import ) {
@@ -68,6 +69,7 @@ class RT_OCDI_Import_Actions {
 			->set_elementor_active_kit()
 			->set_elementor_settings()
 			->import_fluent_forms()
+			->elementor_category_fix()
 			->settings_flag()
 			->update_permalinks()
 			->extra();
@@ -204,6 +206,7 @@ class RT_OCDI_Import_Actions {
 	 * Assigns the imported front and blog pages to the 'front page' and 'posts page' options in WordPress.
 	 *
 	 * @param string $selected_import The name of the imported file.
+	 *
 	 * @return $this
 	 */
 	public function assign_front_page( $selected_import ) {
@@ -366,7 +369,10 @@ class RT_OCDI_Import_Actions {
 	 * @return $this
 	 */
 	public function set_elementor_settings() {
-		$post_type = ! empty( $this->data['elementor_cpt_support'] ) ? $this->data['elementor_cpt_support'] : [ 'post', 'page' ];
+		$post_type = ! empty( $this->data['elementor_cpt_support'] ) ? $this->data['elementor_cpt_support'] : [
+			'post',
+			'page',
+		];
 
 		if ( ! empty( $post_type ) ) {
 			update_option( 'elementor_cpt_support', $post_type );
@@ -474,6 +480,61 @@ class RT_OCDI_Import_Actions {
 		return $this;
 	}
 
+	/**
+	 * Elementor Category Fix.
+	 *
+	 * @return $this
+	 */
+	public function elementor_category_fix() {
+		$elementor_data      = wp_remote_get( $this->data['data_server'] . 'elementor-categories.json' );
+		$elementor_cats_data = json_decode( $elementor_data['body'], true );
+
+		if ( ( is_wp_error( $elementor_data ) ) && ( 200 !== wp_remote_retrieve_response_code( $elementor_data ) ) ) {
+			return $this;
+		}
+
+		$new_cats = [];
+
+		foreach ( $elementor_cats_data as $key => $sub_array ) {
+			foreach ( $sub_array as $sub_key => $sub_sub_array ) {
+				$new_cats[ $key ][ $sub_key ] = array_map(
+					function ( $cat ) {
+						$category = get_category_by_slug( $cat );
+
+						return $category ? $category->term_id : null;
+					},
+					$sub_sub_array
+				);
+			}
+		}
+
+		global $wpdb;
+
+		// Get the posts with the _elementor_data meta key.
+		$posts = $wpdb->get_results(
+			"SELECT * FROM $wpdb->postmeta WHERE meta_key = '_elementor_data'"
+		);
+
+		// Loop through each post.
+		foreach ( $posts as $post ) {
+			$post_id = $post->post_id;
+			$data    = json_decode( $post->meta_value, true );
+
+			if ( array_key_exists( $post_id, $new_cats ) ) {
+				if ( ! empty( $new_cats[ $post_id ] ) ) {
+					foreach ( $new_cats[ $post_id ] as $search_id => $cats ) {
+						$result                      = RT_OCDI_Helpers::search_nested_array( $data, $search_id );
+						$result['settings']['catid'] = $cats;
+
+						RT_OCDI_Helpers::replace_nested_array( $data, $search_id, $result );
+						update_post_meta( $post_id, '_elementor_data', wp_json_encode( $data ) );
+					}
+				}
+			}
+		}
+
+		return $this;
+	}
 
 	/**
 	 * Updates the permalink structure to "/%postname%/".
@@ -579,6 +640,116 @@ class RT_OCDI_Import_Actions {
 	}
 
 	/**
+	 * Reset DB
+	 *
+	 * @return $this
+	 */
+	public function database_reset() {
+		global $wpdb;
+
+		$core_tables = [
+			'commentmeta',
+			'comments',
+			'links',
+			'postmeta',
+			'posts',
+			'term_relationships',
+			'term_taxonomy',
+			'termmeta',
+			'terms',
+		];
+
+		$exclude_core_tables = [ 'options', 'usermeta', 'users' ];
+		$core_tables         = array_map(
+			function ( $tbl ) {
+				global $wpdb;
+
+				return $wpdb->prefix . $tbl;
+			},
+			$core_tables
+		);
+		$exclude_core_tables = array_map(
+			function ( $tbl ) {
+				global $wpdb;
+
+				return $wpdb->prefix . $tbl;
+			},
+			$exclude_core_tables
+		);
+		$custom_tables       = [];
+
+		$table_status = $wpdb->get_results( 'SHOW TABLE STATUS' );
+		if ( is_array( $table_status ) ) {
+			foreach ( $table_status as $index => $table ) {
+				if ( 0 !== stripos( $table->Name, $wpdb->prefix ) ) {
+					continue;
+				}
+				if ( empty( $table->Engine ) ) {
+					continue;
+				}
+
+				if ( false === in_array( $table->Name, $core_tables ) && false === in_array( $table->Name, $exclude_core_tables ) ) {
+					$custom_tables[] = $table->Name;
+				}
+			}
+		}
+		$custom_tables = array_merge( $core_tables, $custom_tables );
+
+		foreach ( $custom_tables as $tbl ) {
+			$wpdb->query( 'SET foreign_key_checks = 0' );
+			$wpdb->query( 'TRUNCATE TABLE ' . $tbl );
+		}
+
+		// Delete Widgets.
+		global $wp_registered_widget_controls;
+
+		$widget_controls = $wp_registered_widget_controls;
+
+		$available_widgets = [];
+
+		foreach ( $widget_controls as $widget ) {
+			if ( ! empty( $widget['id_base'] ) && ! isset( $available_widgets[ $widget['id_base'] ] ) ) {
+				$available_widgets[] = $widget['id_base'];
+			}
+		}
+
+		update_option( 'sidebars_widgets', [ 'wp_inactive_widgets' => [] ] );
+
+		foreach ( $available_widgets as $widget_data ) {
+			update_option( 'widget_' . $widget_data, [] );
+		}
+
+		// Delete Thememods.
+		$theme_slug = get_option( 'stylesheet' );
+		$mods       = get_option( "theme_mods_$theme_slug" );
+
+		if ( false !== $mods ) {
+			delete_option( "theme_mods_$theme_slug" );
+		}
+
+		// Clear "uploads" folder.
+		$this->clear_uploads( wp_get_upload_dir()['basedir'] );
+
+		return $this;
+	}
+
+	/**
+	 * Recursively deletes all files and directories within a given directory.
+	 *
+	 * @param string $dir The directory path to delete.
+	 *
+	 * @return bool
+	 */
+	private function clear_uploads( $dir ) {
+		$files = array_diff( scandir( $dir ), [ '.', '..' ] );
+		foreach ( $files as $file ) {
+			( is_dir( "$dir/$file" ) ) ? $this->clear_uploads( "$dir/$file" ) : unlink( "$dir/$file" );
+		}
+
+		return ( $dir != wp_get_upload_dir()['basedir'] ) ? rmdir( $dir ) : true;
+	}
+
+	/**
 	 * Extra actions specific to theme.
 	 *
 	 * @return $this
@@ -586,6 +757,18 @@ class RT_OCDI_Import_Actions {
 	public function extra() {
 		if ( 'Gymat' === $this->data['theme'] ) {
 			set_theme_mod( 'online_button_link', home_url( 'contact' ) );
+		}
+
+		if ( 'Neeon' === $this->data['theme'] ) {
+			if ( ! class_exists( 'SC_Class' ) ) {
+				return $this;
+			}
+
+			$response = wp_remote_get( $this->data['data_server'] . 'access-press.dat' );
+
+			if ( ( ! is_wp_error( $response ) ) && ( 200 === wp_remote_retrieve_response_code( $response ) ) ) {
+				update_option( 'apsc_settings', unserialize( sanitize_text_field( $response['body'] ) ) );
+			}
 		}
 
 		return $this;

@@ -84,23 +84,16 @@ class RT_OCDI {
 	 * @return void
 	 */
 	public function init_hooks() {
-		// Scripts.
+		// Actions.
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_backend_scripts' ] );
-
-		// Recommended Plugins.
-		add_filter( 'ocdi/register_plugins', [ $this, 'recommended_plugins' ] );
-
-		// Import files.
-		add_filter( 'ocdi/import_files', [ $this, 'import_files' ] );
-
-		// Intro Text.
-		add_filter( 'ocdi/plugin_intro_text', [ $this, 'intro_text' ] );
-
-		// Rewrite Flush Check.
 		add_action( 'init', [ $this, 'rewrite_flush_check' ] );
-
-		// Remove Notices.
 		add_action( 'admin_init', [ $this, 'remove_all_notices' ] );
+
+		// Filters.
+		add_filter( 'ocdi/register_plugins', [ $this, 'recommended_plugins' ] );
+		add_filter( 'ocdi/import_files', [ $this, 'import_files' ] );
+		add_filter( 'ocdi/plugin_intro_text', [ $this, 'intro_text' ] );
+		add_filter( 'plugin_action_links_one-click-demo-import/one-click-demo-import.php', [ $this, 'add_action_links' ] );
 	}
 
 	/**
@@ -188,6 +181,23 @@ class RT_OCDI {
 			flush_rewrite_rules();
 			delete_option( $option );
 		}
+	}
+
+	/**
+	 * Add action link.
+	 *
+	 * @param array $links Action links.
+	 *
+	 * @return array
+	 */
+	public function add_action_links( $links ) {
+		return array_merge(
+			$links,
+			[
+				'<a href="' . esc_url( admin_url( 'themes.php?page=one-click-demo-import' ) ) . '">' . esc_html__( 'Import Demo Data', 'neeon' ) . '</a>',
+				'<a href="' . esc_url( admin_url( 'themes.php?page=rt-demo-importer-status' ) ) . '">' . esc_html__( 'System Status', 'neeon' ) . '</a>',
+			]
+		);
 	}
 
 	/**

@@ -6,6 +6,7 @@
 	margin-top: -65px;
 }
 
+.appearance_page_one-click-demo-import #wpfooter,
 .ocdi__content-container-content .ocdi-install-plugins-content-content .plugin-item.plugin-item-wpforms-lite,
 .ocdi__content-container-content .ocdi-install-plugins-content-content .plugin-item.plugin-item-all-in-one-seo-pack,
 .ocdi__content-container-content .ocdi-install-plugins-content-content .plugin-item.plugin-item-google-analytics-for-wordpress,
@@ -232,6 +233,28 @@ h1.ocdi__title-container-title + a,
 
 .demo-importer-system-status .demo-importer-status-table td .data-server span.failure {
 	background: #dc3545;
+}
+
+.ocdi-install-plugins-content-header {
+	padding: 20px 5px 20px 20px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+	border-left: 6px solid #2271b1;
+	margin-bottom: 30px;
+	position: relative;
+}
+
+.ocdi-install-plugins-content-header::before {
+	content: "";
+	position: absolute;
+	left: -10px;
+	bottom: -31px;
+	width: calc(100% + 20px);
+	height: 30px;
+	background: #f1f1f1;
+}
+
+.ocdi-install-plugins-content-header + .ocdi-install-plugins-content-content {
+	border-top: 1px solid #dddddd;
 }
 
 @media only screen and (min-width: 1440px) {

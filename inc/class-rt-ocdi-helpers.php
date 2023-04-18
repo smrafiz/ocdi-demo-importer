@@ -34,9 +34,9 @@ class RT_OCDI_Helpers {
 		$http_response_code  = wp_remote_retrieve_response_code( $package_file_server );
 
 		if ( is_wp_error( $package_file_server ) || 200 !== (int) $http_response_code ) {
-			$output = '<span class="failure">' . __( 'Connection Error', 'my-plugin-text-domain' ) . '</span>';
+			$output = '<span class="failure">' . __( 'Connection Error', 'neeon' ) . '</span>';
 		} else {
-			$output = '<span class="success">' . __( 'Connected', 'my-plugin-text-domain' ) . '</span>';
+			$output = '<span class="success">' . __( 'Connected', 'neeon' ) . '</span>';
 		}
 
 		return $output;
@@ -112,5 +112,55 @@ class RT_OCDI_Helpers {
 		}
 
 		return $page_got_by_title;
+	}
+
+	/**
+	 * Searches for an array with the given ID in a nested array.
+	 *
+	 * @param array  $array The array to search.
+	 * @param string $search_id The id to search for.
+	 *
+	 * @return mixed|null
+	 */
+	public static function search_nested_array( $array, $search_id ) {
+		if ( ! is_array( $array ) ) {
+			return $array;
+		}
+
+		foreach ( $array as $key => $value ) {
+			if ( is_array( $value ) ) {
+				$result = self::search_nested_array( $value, $search_id );
+
+				if ( null !== $result ) {
+					return $result;
+				}
+			} else {
+				if ( 'id' === $key && $value === $search_id ) {
+					return $array;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Recursively searches a nested array for a given key and replaces its value.
+	 *
+	 * @param array  $array The array to search.
+	 * @param string $search The key to search for.
+	 * @param mixed  $replace The value to replace.
+	 */
+	public static function replace_nested_array( &$array, $search, &$replace ) {
+		foreach ( $array as &$value ) {
+			if ( is_array( $value ) ) {
+				// check if this is the array that contains the search value.
+				if ( isset( $value['id'] ) && $value['id'] === $search ) {
+					$value = $replace;
+					return;
+				}
+
+				self::replace_nested_array( $value, $search, $replace );
+			}
+		}
 	}
 }

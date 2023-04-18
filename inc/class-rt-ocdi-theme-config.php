@@ -44,15 +44,761 @@ class RT_OCDI_Theme_Config {
 	 * @return $this
 	 */
 	private function theme_data() {
-		$this->data['theme']                 = 'Gymat';
-		$this->data['data_server']           = 'https://radiustheme.com/demo/wordpress/demo-content/gymat/ocdi/';
-		$this->data['demo_link']             = 'https://radiustheme.com/demo/wordpress/themes/gymat/';
-		$this->data['import_doc_link']       = 'https://radiustheme.com/demo/wordpress/themes/gymat/docs/#section-4';
+		$this->data['theme']                 = 'Neeon';
+		$this->data['data_server']           = 'https://radiustheme.com/demo/wordpress/demo-content/neeon/ocdi/';
+		$this->data['demo_link']             = 'https://radiustheme.com/demo/wordpress/themes/neeon/';
+		$this->data['import_doc_link']       = 'https://radiustheme.com/demo/wordpress/themes/neeon/docs/#section-4';
 		$this->data['email_to_replace']      = 'techlabpro24@gmail.com';
+		$this->data['taxonomies_to_import']  = [
+			'category',
+			'post_tag',
+			'product_cat',
+			'product_tag',
+			'neeon_team_category',
+		];
 		$this->data['elementor_cpt_support'] = [
 			'post',
 			'page',
-			'gymat_class',
+		];
+		$this->data['elementor_cats_data']   = [
+			'1802' => [
+				'2ab710a' => [
+					'travel',
+					'food',
+					'health',
+					'politics',
+				],
+				'af8319c' => [
+					'fashion',
+					'travel',
+					'food',
+					'health',
+				],
+				'410926d' => [
+					'fashion',
+					'food',
+					'racing',
+					'sports',
+					'technology',
+					'travel',
+				],
+			],
+			'1804' => [
+				'8bc9f50' => [
+					'technology',
+				],
+				'e8ca4e0' => [
+					'fashion',
+					'food',
+					'animal',
+					'action',
+					'design',
+					'politics',
+				],
+				'047fc88' => [
+					'technology',
+					'travel',
+					'health',
+					'design',
+				],
+				'35ec74f' => [
+					'technology',
+				],
+				'269a69c' => [
+					'technology',
+				],
+				'd5fd230' => [
+					'technology',
+					'fashion',
+					'travel',
+					'food',
+				],
+				'5fbbe1a' => [
+					'fashion',
+				],
+				'd73824b' => [
+					'america',
+				],
+				'8e5515e' => [
+					'food',
+				],
+				'5c4ef4c' => [
+					'animal',
+				],
+			],
+			'1805' => [
+				'aed8a49' => [
+					'fighter',
+					'action',
+					'racing',
+					'music',
+				],
+				'8be6b63' => [
+					'action',
+					'racing',
+				],
+				'224914d' => [
+					'action',
+				],
+				'41f0d5e' => [
+					'fighter',
+					'racing',
+				],
+				'af361ff' => [
+					'technology',
+					'fashion',
+					'travel',
+					'food',
+					'health',
+				],
+				'0df92fe' => [
+					'fighter',
+					'action',
+					'racing',
+					'animated',
+				],
+			],
+			'1806' => [
+				'657ca3a' => [
+					'graphics',
+				],
+				'49bcf4a' => [
+					'design',
+					'graphics',
+				],
+				'ba482fe' => [
+					'design',
+					'graphics',
+				],
+				'1b92b67' => [
+					'design',
+				],
+				'fb873c6' => [
+					'design',
+					'graphics',
+				],
+			],
+			'1807' => [
+				'8f33a4f' => [
+					'politics',
+				],
+				'333c24e' => [
+					'sports',
+				],
+				'a189e73' => [
+					'technology',
+				],
+				'4f1811c' => [
+					'sports',
+				],
+				'fdf60a7' => [
+					'politics',
+				],
+				'5706b01' => [
+					'music',
+				],
+				'0ffdf28' => [
+					'action',
+					'design',
+					'graphics',
+					'politics',
+					'music',
+				],
+				'f0daf26' => [
+					'politics',
+				],
+				'd52ca9c' => [
+					'travel',
+					'sports',
+					'politics',
+				],
+			],
+			'1808' => [
+				'839d53f' => [
+					'fashion',
+				],
+				'9521971' => [
+					'fashion',
+				],
+				'348edd5' => [
+					'travel',
+				],
+				'0cfb9a2' => [
+					'fashion',
+				],
+				'5c15c84' => [
+					'fashion',
+					'travel',
+				],
+				'c12cb71' => [
+					'fashion',
+				],
+				'9984e2a' => [
+					'technology',
+					'fashion',
+					'travel',
+					'food',
+					'health',
+					'sports',
+				],
+				'f8484e3' => [
+					'fashion',
+				],
+			],
+			'6788' => [
+				'9f67ab6'  => [
+					'sports',
+				],
+				'50c61e2'  => [
+					'sports',
+				],
+				'5986ac27' => [
+					'sports',
+				],
+				'79472f4'  => [
+					'sports',
+				],
+			],
+			'6790' => [
+				'524768e5' => [
+					'america',
+					'europe',
+					'canada',
+				],
+				'7a94bd36' => [
+					'travel',
+					'food',
+					'health',
+					'sports',
+					'animal',
+				],
+				'70a3240d' => [
+					'america',
+				],
+			],
+			'7191' => [
+				'73bac22f' => [
+					'gym',
+				],
+				'92c5edb'  => [
+					'gym',
+				],
+				'3df073d'  => [
+					'technology',
+					'fashion',
+					'travel',
+					'food',
+					'sports',
+				],
+				'8896039'  => [
+					'gym',
+				],
+				'2141612e' => [
+					'gym',
+				],
+				'1121234d' => [
+					'gym',
+				],
+				'284c1371' => [
+					'yoga',
+				],
+				'58ff2230' => [
+					'gym',
+				],
+				'4cb9f911' => [
+					'gym',
+				],
+				'70ab5002' => [
+					'fitness',
+				],
+				'72587c51' => [
+					'gym',
+					'yoga',
+					'fitness',
+				],
+			],
+			'7513' => [
+				'77952400' => [
+					'medical',
+				],
+				'1e3a0f8a' => [
+					'medical',
+				],
+				'172a8984' => [
+					'medical',
+				],
+				'4f84d4f7' => [
+					'medical',
+				],
+				'ea08f1'   => [
+					'technology',
+					'fashion',
+					'food',
+					'health',
+					'sports',
+					'animal',
+				],
+				'6a03bb9'  => [
+					'dental',
+				],
+				'53487296' => [
+					'eye-care',
+				],
+				'34f30486' => [
+					'operation',
+				],
+				'771a18d9' => [
+					'medical',
+					'operation',
+				],
+				'70fa9836' => [
+					'medical',
+				],
+				'c779fd7'  => [
+					'medical',
+				],
+				'2944eae8' => [
+					'medical',
+				],
+			],
+			'7515' => [
+				'5dd54b0'  => [
+					'economy',
+				],
+				'5082ae84' => [
+					'business',
+				],
+				'5bf10012' => [
+					'finance',
+				],
+				'460bdb06' => [
+					'business',
+				],
+				'7ab0f801' => [
+					'economy',
+				],
+				'5df1730b' => [
+					'business',
+				],
+				'edd04c8'  => [
+					'business',
+				],
+				'1c006c56' => [
+					'fashion',
+					'travel',
+					'sports',
+					'animal',
+					'fighter',
+				],
+				'519506ce' => [
+					'business',
+				],
+				'63185146' => [
+					'business',
+				],
+				'3da462e4' => [
+					'business',
+				],
+				'482e6c29' => [
+					'business',
+					'finance',
+					'economy',
+				],
+				'c8d6931'  => [
+					'business',
+				],
+			],
+			'7776' => [
+				'2a52a83d' => [
+					'life-style',
+				],
+				'75a82682' => [
+					'fashion',
+					'travel',
+					'life-style',
+				],
+				'50ec00f3' => [
+					'life-style',
+				],
+				'1c0c6a6'  => [
+					'life-style',
+				],
+				'adeb542'  => [
+					'fashion',
+					'life-style',
+				],
+				'503671f0' => [
+					'life-style',
+				],
+			],
+			'7902' => [
+				'3b3f2fc7' => [
+					'food',
+				],
+				'48fb2bb6' => [
+					'dessert',
+				],
+				'4ac5796'  => [
+					'meat',
+				],
+				'd3c4e5d'  => [
+					'breakfast',
+				],
+				'bb63d84'  => [
+					'pizza',
+				],
+				'48aa4c0'  => [
+					'soup',
+				],
+				'9fce62b'  => [
+					'dessert',
+				],
+				'a51ae0a'  => [
+					'salad',
+				],
+				'ec22eb9'  => [
+					'breakfast',
+				],
+				'72352d77' => [
+					'food',
+				],
+				'5452c725' => [
+					'launch',
+				],
+				'54f83030' => [
+					'food',
+				],
+				'50ef1efb' => [
+					'fashion',
+					'travel',
+					'food',
+					'health',
+					'sports',
+					'animal',
+				],
+				'22169d1a' => [
+					'breakfast',
+				],
+			],
+			'8034' => [
+				'4895f247' => [
+					'wedding',
+					'nature',
+					'adventure',
+					'wildlife',
+				],
+				'da5f12d'  => [
+					'wedding',
+					'nature',
+				],
+				'493c516a' => [
+					'wedding',
+					'nature',
+					'adventure',
+					'wildlife',
+				],
+			],
+			'8159' => [
+				'6e7eccc6' => [
+					'animal',
+				],
+				'103d063b' => [
+					'animal',
+				],
+				'717a05e'  => [
+					'animal',
+					'wildlife',
+					'curiosity',
+					'biology',
+					'marine',
+				],
+				'e666012'  => [
+					'technology',
+					'curiosity',
+				],
+				'757c43a1' => [
+					'animal',
+				],
+				'6bc49307' => [
+					'curiosity',
+					'biology',
+				],
+			],
+			'8325' => [
+				'c211e3'   => [
+					'modern',
+					'popular',
+					'trending',
+				],
+				'325064b5' => [
+					'music',
+				],
+				'160af3fd' => [
+					'modern',
+					'popular',
+					'trending',
+				],
+				'317a0ce6' => [
+					'modern',
+				],
+				'2c30cf7'  => [
+					'modern',
+					'trending',
+				],
+				'5e62faf8' => [
+					'trending',
+				],
+				'51dcb0f1' => [
+					'modern',
+					'popular',
+					'trending',
+				],
+				'597f2a13' => [
+					'modern',
+					'popular',
+					'trending',
+				],
+				'43ce72df' => [
+					'modern',
+					'popular',
+				],
+				'281e9774' => [
+					'popular',
+					'trending',
+				],
+			],
+			'8420' => [
+				'206b67f9' => [
+					'politics',
+				],
+				'5f18a56'  => [
+					'sports',
+				],
+				'1117147a' => [
+					'nature',
+					'adventure',
+				],
+				'6739acee' => [
+					'politics',
+				],
+				'31fa8f8d' => [
+					'finance',
+				],
+				'6535ce99' => [
+					'action',
+					'design',
+					'graphics',
+					'politics',
+					'music',
+					'football',
+				],
+				'6be0d775' => [
+					'medical',
+				],
+				'1df0de12' => [
+					'wedding',
+					'adventure',
+				],
+				'99fbb91'  => [
+					'sports',
+					'politics',
+					'business',
+				],
+			],
+			'8422' => [
+				'5aaeba0f' => [
+					'politics',
+				],
+				'3a06144b' => [
+					'politics',
+				],
+				'2408d93a' => [
+					'fashion',
+				],
+				'765c42a7' => [
+					'politics',
+				],
+				'5aa39613' => [
+					'politics',
+				],
+				'142b5fcf' => [
+					'politics',
+				],
+				'31563439' => [
+					'technology',
+				],
+				'266a4d18' => [
+					'fashion',
+				],
+				'616d9780' => [
+					'fashion',
+				],
+				'20f5ee3d' => [
+					'sports',
+				],
+				'22678a81' => [
+					'life-style',
+				],
+				'5ed5c8e'  => [
+					'sports',
+					'politics',
+					'business',
+				],
+			],
+			'8791' => [
+				'5eb900a7' => [
+					'gadget',
+				],
+				'2b2d049d' => [
+					'gadget',
+				],
+				'28f68d26' => [
+					'gadget',
+				],
+				'1949b2d7' => [
+					'gadget',
+				],
+				'37d4ba9d' => [
+					'gadget',
+				],
+				'720f85b7' => [
+					'action',
+				],
+				'7047a17b' => [
+					'gadget',
+				],
+				'42b12d32' => [
+					'gadget',
+				],
+			],
+			'8793' => [
+				'15b6699c' => [
+					'automotive',
+				],
+				'3e89dda'  => [
+					'automotive',
+				],
+				'446ce434' => [
+					'automotive',
+				],
+				'2b75fa2e' => [
+					'automotive',
+					'service',
+					'repair',
+					'review',
+				],
+				'c72e4b9'  => [
+					'automotive',
+				],
+				'77a32dfa' => [
+					'automotive',
+				],
+				'2f6a2f66' => [
+					'review',
+				],
+				'3a7bf8c1' => [
+					'review',
+				],
+				'30f86c2e' => [
+					'automotive',
+				],
+			],
+			'9059' => [
+				'48b8295a' => [
+					'crypto',
+				],
+				'7043b890' => [
+					'crypto',
+				],
+				'192cde69' => [
+					'business',
+				],
+				'4cb0e229' => [
+					'mobiles',
+					'tech',
+				],
+				'69fe6462' => [
+					'fashion',
+					'canada',
+					'business',
+					'crypto',
+					'world',
+					'economy',
+				],
+				'ec835e4'  => [
+					'crypto',
+				],
+				'3c16a81e' => [
+					'crypto',
+				],
+				'37fb84a9' => [
+					'crypto',
+				],
+				'57504125' => [
+					'review',
+					'crypto',
+				],
+			],
+			'9180' => [
+				'2c36393d' => [
+					'obituaries',
+				],
+				'58f2b740' => [
+					'obituaries',
+				],
+				'4bf61fa4' => [
+					'obituaries',
+				],
+				'68d8458f' => [
+					'obituaries',
+					'covid-19',
+					'army',
+					'accident',
+				],
+				'223fa9b7' => [
+					'obituaries',
+				],
+				'176568bf' => [
+					'obituaries',
+				],
+				'7f664e74' => [
+					'obituaries',
+				],
+				'2b8e4b3c' => [
+					'obituaries',
+				],
+			],
+			'9188' => [
+				'73188855' => [
+					'funny',
+				],
+				'4225d1f6' => [
+					'funny',
+				],
+				'33500fb8' => [
+					'science',
+				],
+				'448cd804' => [
+					'action',
+					'racing',
+					'funny',
+					'animated',
+					'science',
+					'place',
+				],
+				'313eade9' => [
+					'funny',
+				],
+				'4f4bbe4a' => [
+					'funny',
+				],
+				'3bd43a54' => [
+					'fighter',
+					'action',
+					'racing',
+					'funny',
+				],
+			],
 		];
 
 		return $this;
@@ -66,29 +812,29 @@ class RT_OCDI_Theme_Config {
 	private function demos() {
 		$this->data['demo'] = [
 			[
-				'name'    => __( 'Home 1', 'my-plugin-text-domain' ),
+				'name'    => __( 'Home 01', 'neeon' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot1.jpg',
-				'demo'    => 'https://www.radiustheme.com/demo/wordpress/themes/gymat/',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/',
 			],
 			[
-				'name'    => __( 'Home 2', 'my-plugin-text-domain' ),
+				'name'    => __( 'Home 02', 'neeon' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot2.jpg',
-				'demo'    => 'https://www.radiustheme.com/demo/wordpress/themes/gymat/home-2/',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-02/',
 			],
 			[
-				'name'    => __( 'Home 3', 'my-plugin-text-domain' ),
+				'name'    => __( 'Home 03', 'neeon' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot3.jpg',
-				'demo'    => 'https://www.radiustheme.com/demo/wordpress/themes/gymat/home-3/',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-03/',
 			],
 			[
-				'name'    => __( 'Home 4', 'my-plugin-text-domain' ),
+				'name'    => __( 'Home 04', 'neeon' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot4.jpg',
-				'demo'    => 'https://www.radiustheme.com/demo/wordpress/themes/gymat/home-4/',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-04/',
 			],
 			[
-				'name'    => __( 'Home 5', 'my-plugin-text-domain' ),
+				'name'    => __( 'Home 05', 'neeon' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot5.jpg',
-				'demo'    => 'https://www.radiustheme.com/demo/wordpress/themes/gymat/home-5/',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-05/',
 			],
 		];
 
@@ -107,12 +853,8 @@ class RT_OCDI_Theme_Config {
 				'menu_name'     => 'Main Menu',
 			],
 			[
-				'menu_location' => 'header_5_left_menu',
-				'menu_name'     => 'Header 5 Left Menu',
-			],
-			[
-				'menu_location' => 'header_5_right_menu',
-				'menu_name'     => 'Header 5 Right Menu',
+				'menu_location' => 'topright',
+				'menu_name'     => 'Main Menu',
 			],
 		];
 
@@ -146,15 +888,53 @@ class RT_OCDI_Theme_Config {
 				'required'    => true,
 			],
 			[
+				'name'        => 'Review Schema',
+				'description' => 'This plugin is <b><i>Optional</i></b>.',
+				'slug'        => 'review-schema',
+				'required'    => false,
+			],
+			[
+				'name'        => 'Review Schema Pro',
+				'description' => 'This plugin is <b><i>Optional</i></b>.',
+				'slug'        => 'review-schema-pro',
+				'source'      => get_template_directory_uri() . '/inc/plugins/review-schema-pro.zip',
+				'required'    => false,
+			],
+			[
+				'name'        => 'AMP',
+				'description' => 'This plugin is <b><i>Optional</i></b>.',
+				'slug'        => 'amp',
+				'required'    => false,
+			],
+			[
+				'name'        => 'Radius AMP',
+				'description' => 'This plugin is <b><i>Optional</i></b>.',
+				'slug'        => 'radius-amp',
+				'source'      => get_template_directory_uri() . '/inc/plugins/radius-amp.zip',
+				'required'    => false,
+			],
+			[
 				'name'        => 'WP Fluent Forms',
 				'description' => 'This plugin is <b><i>Optional</i></b>.',
 				'slug'        => 'fluentform',
 				'required'    => false,
 			],
 			[
+				'name'        => 'AccessPress Social Counter',
+				'description' => 'This plugin is <b><i>Optional</i></b>.',
+				'slug'        => 'accesspress-social-counter',
+				'required'    => false,
+			],
+			[
 				'name'        => 'Woocommerce',
 				'description' => 'This plugin is <b><i>Optional</i></b>.',
 				'slug'        => 'woocommerce',
+				'required'    => false,
+			],
+			[
+				'name'        => 'YITH WooCommerce Quick View',
+				'description' => 'This plugin is <b><i>Optional</i></b>.',
+				'slug'        => 'yith-woocommerce-quick-view',
 				'required'    => false,
 			],
 		];
