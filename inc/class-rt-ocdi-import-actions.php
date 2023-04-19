@@ -486,10 +486,9 @@ class RT_OCDI_Import_Actions {
 	 * @return $this
 	 */
 	public function elementor_category_fix() {
-		$elementor_data      = wp_remote_get( $this->data['data_server'] . 'elementor-categories.json' );
-		$elementor_cats_data = json_decode( $elementor_data['body'], true );
+		$elementor_cats_data = $this->data['elementor_cats_data'];
 
-		if ( ( is_wp_error( $elementor_data ) ) && ( 200 !== wp_remote_retrieve_response_code( $elementor_data ) ) ) {
+		if ( empty( $elementor_cats_data ) ) {
 			return $this;
 		}
 
@@ -527,7 +526,7 @@ class RT_OCDI_Import_Actions {
 						$result['settings']['catid'] = $cats;
 
 						RT_OCDI_Helpers::replace_nested_array( $data, $search_id, $result );
-						update_post_meta( $post_id, '_elementor_data', wp_json_encode( $data ) );
+						update_post_meta( $post_id, '_elementor_data', wp_json_encode( $data, JSON_UNESCAPED_UNICODE ) );
 					}
 				}
 			}

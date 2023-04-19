@@ -799,6 +799,136 @@ class RT_OCDI_Theme_Config {
 					'funny',
 				],
 			],
+			'9193' => [
+				'5fab8026' => [
+					'furniture',
+				],
+				'd9a0ba2'  => [
+					'furniture',
+				],
+				'1453c499' => [
+					'furniture',
+				],
+				'330fcda0' => [
+					'furniture',
+				],
+				'2db4c23b' => [
+					'gadget',
+					'science',
+					'furniture',
+					'decoration',
+					'inspiration',
+					'design',
+				],
+				'6d4a17eb' => [
+					'furniture',
+				],
+				'42bfba4f' => [
+					'furniture',
+				],
+				'4d6aa56'  => [
+					'furniture',
+				],
+			],
+			'9475' => [
+				'39069fd'  => [
+					'business',
+				],
+				'4239a8a8' => [
+					'business',
+				],
+				'6f9a3521' => [
+					'business',
+				],
+				'37101f53' => [
+					'business',
+				],
+				'432efc04' => [
+					'business',
+				],
+				'67d269'   => [
+					'business',
+					'finance',
+					'economy',
+					'nature',
+					'service',
+					'place',
+				],
+				'62a0687b' => [
+					'business',
+				],
+				'6818c10b' => [
+					'finance',
+				],
+				'95e559a'  => [
+					'business',
+				],
+			],
+			'9477' => [
+				'33484100' => [
+					'podcast',
+				],
+				'74564576' => [
+					'podcast',
+				],
+				'5b3c8a9f' => [
+					'podcast',
+				],
+				'703ec054' => [
+					'podcast',
+				],
+				'12674a87' => [
+					'podcast',
+				],
+				'9ba2f51'  => [
+					'podcast',
+				],
+				'5685879'  => [
+					'podcast',
+				],
+				'138a578c' => [
+					'thriller',
+					'horror',
+					'life-style',
+					'motivation',
+					'business',
+					'music',
+				],
+				'19db3a7'  => [
+					'podcast',
+				],
+				'34d74c6b' => [
+					'podcast',
+				],
+			],
+			'9479' => [
+				'bf914ff'  => [
+					'movie',
+				],
+				'55fcf8dd' => [
+					'science',
+					'thriller',
+					'horror',
+				],
+				'1727b0b1' => [
+					'movie',
+				],
+				'1df50b2e' => [
+					'science',
+				],
+				'27e76547' => [
+					'movie',
+				],
+				'4b668920' => [
+					'science',
+					'science-fiction',
+					'thriller',
+					'horror',
+				],
+				'1403fdfc' => [
+					'movie',
+				],
+			],
 		];
 
 		return $this;
@@ -836,6 +966,116 @@ class RT_OCDI_Theme_Config {
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot5.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-05/',
 			],
+			[
+				'name'    => __( 'Home 06', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot6.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-06/',
+			],
+			[
+				'name'    => __( 'Home 07', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot7.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-07/',
+			],
+			[
+				'name'    => __( 'Home 08', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot8.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-08/',
+			],
+			[
+				'name'    => __( 'Home 09', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot9.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-09/',
+			],
+			[
+				'name'    => __( 'Home 10', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot10.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-10/',
+			],
+			[
+				'name'    => __( 'Home 11', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot11.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-11/',
+			],
+			[
+				'name'    => __( 'Home 12', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot12.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-12/',
+			],
+			[
+				'name'    => __( 'Home 13', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot13.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-13/',
+			],
+			[
+				'name'    => __( 'Home 14', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot14.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-14/',
+			],
+			[
+				'name'    => __( 'Home 15', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot15.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-15/',
+			],
+			[
+				'name'    => __( 'Home 16', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot16.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-16/',
+			],
+			[
+				'name'    => __( 'Home 17', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot17.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-17/',
+			],
+			[
+				'name'    => __( 'Home 18', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot18.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-18/',
+			],
+			[
+				'name'    => __( 'Home 19', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot19.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-19/',
+			],
+			[
+				'name'    => __( 'Home 20', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot20.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-20/',
+			],
+			[
+				'name'    => __( 'Home 21', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot21.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-21/',
+			],
+			[
+				'name'    => __( 'Home 22', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot22.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-22/',
+			],
+			[
+				'name'    => __( 'Home 23', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot23.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-23/',
+			],
+			[
+				'name'    => __( 'Home 24', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot24.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-24/',
+			],
+			[
+				'name'    => __( 'Home 25', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot25.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-25/',
+			],
+			[
+				'name'    => __( 'Home 26', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot26.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-26/',
+			],
+			[
+				'name'    => __( 'Home 27', 'neeon' ),
+				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot27.jpg',
+				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-27/',
+			],
 		];
 
 		return $this;
@@ -850,7 +1090,7 @@ class RT_OCDI_Theme_Config {
 		$this->data['menus'] = [
 			[
 				'menu_location' => 'primary',
-				'menu_name'     => 'Main Menu',
+				'menu_name'     => 'Primary Menu',
 			],
 			[
 				'menu_location' => 'topright',
