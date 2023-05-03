@@ -47,7 +47,8 @@ class RT_OCDI_Import_Actions {
 		$this
 			->cleanups()
 			->delete_pages()
-			->draft_post();
+			->draft_post()
+			->set_elementor_settings();
 
 		return $this;
 	}
@@ -67,7 +68,6 @@ class RT_OCDI_Import_Actions {
 			->assign_front_page( $selected_import )
 			->assign_woo_pages()
 			->set_elementor_active_kit()
-			->set_elementor_settings()
 			->import_fluent_forms()
 			->elementor_category_fix()
 			->settings_flag()
@@ -382,6 +382,7 @@ class RT_OCDI_Import_Actions {
 		update_option( 'elementor_disable_color_schemes', 'yes' );
 		update_option( 'elementor_disable_typography_schemes', 'yes' );
 		update_option( 'elementor_experiment-e_swiper_latest', 'inactive' );
+		update_option( 'elementor_unfiltered_files_upload', '1' );
 
 		return $this;
 	}
@@ -545,6 +546,32 @@ class RT_OCDI_Import_Actions {
 		flush_rewrite_rules();
 
 		return $this;
+	}
+
+	/**
+	 * Fix the widgets
+	 * @return void
+	 */
+	public function fix_widgets() {
+		$all     = get_option( 'sidebars_widgets' );
+		$widgets = get_option( 'widget_media_image' );
+
+		foreach ($all as $a) {
+//			echo '<pre>';
+//			print_r( $a );
+//			echo '</pre>';
+//			foreach ( $widgets as $key => $value ) {
+//				if ( array_key_first( $widgets ) === $key ) {
+//					$widgets[ $key ] = [
+//						'attachment_id' => 6724,
+//						'width'         => 512,
+//						'height'        => 512,
+//						'size'          => 'medium',
+//						'url'           => wp_get_attachment_image_url( 6724, 'medium' ),
+//					];
+//				}
+//			}
+		}
 	}
 
 	/**

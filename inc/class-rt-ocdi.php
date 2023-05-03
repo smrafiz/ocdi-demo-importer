@@ -194,8 +194,8 @@ class RT_OCDI {
 		return array_merge(
 			$links,
 			[
-				'<a href="' . esc_url( admin_url( 'themes.php?page=one-click-demo-import' ) ) . '">' . esc_html__( 'Import Demo Data', 'neeon' ) . '</a>',
-				'<a href="' . esc_url( admin_url( 'themes.php?page=rt-demo-importer-status' ) ) . '">' . esc_html__( 'System Status', 'neeon' ) . '</a>',
+				'<a href="' . esc_url( admin_url( 'themes.php?page=one-click-demo-import' ) ) . '">' . esc_html__( 'Import Demo Data', 'my-plugin-text-domain' ) . '</a>',
+				'<a href="' . esc_url( admin_url( 'themes.php?page=rt-demo-importer-status' ) ) . '">' . esc_html__( 'System Status', 'my-plugin-text-domain' ) . '</a>',
 			]
 		);
 	}

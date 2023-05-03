@@ -45,7 +45,7 @@ class RT_OCDI_Theme_Config {
 	 */
 	private function theme_data() {
 		$this->data['theme']                 = 'Neeon';
-		$this->data['data_server']           = 'https://radiustheme.com/demo/wordpress/demo-content/neeon/ocdi/';
+		$this->data['data_server']           = 'https://radiustheme.com/demo/wordpress/demo-content/neeon/one-click/';
 		$this->data['demo_link']             = 'https://radiustheme.com/demo/wordpress/themes/neeon/';
 		$this->data['import_doc_link']       = 'https://radiustheme.com/demo/wordpress/themes/neeon/docs/#section-4';
 		$this->data['email_to_replace']      = 'techlabpro24@gmail.com';
@@ -942,137 +942,137 @@ class RT_OCDI_Theme_Config {
 	private function demos() {
 		$this->data['demo'] = [
 			[
-				'name'    => __( 'Home 01', 'neeon' ),
+				'name'    => __( 'Home 01', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot1.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/',
 			],
 			[
-				'name'    => __( 'Home 02', 'neeon' ),
+				'name'    => __( 'Home 02', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot2.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-02/',
 			],
 			[
-				'name'    => __( 'Home 03', 'neeon' ),
+				'name'    => __( 'Home 03', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot3.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-03/',
 			],
 			[
-				'name'    => __( 'Home 04', 'neeon' ),
+				'name'    => __( 'Home 04', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot4.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-04/',
 			],
 			[
-				'name'    => __( 'Home 05', 'neeon' ),
+				'name'    => __( 'Home 05', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot5.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-05/',
 			],
 			[
-				'name'    => __( 'Home 06', 'neeon' ),
+				'name'    => __( 'Home 06', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot6.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-06/',
 			],
 			[
-				'name'    => __( 'Home 07', 'neeon' ),
+				'name'    => __( 'Home 07', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot7.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-07/',
 			],
 			[
-				'name'    => __( 'Home 08', 'neeon' ),
+				'name'    => __( 'Home 08', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot8.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-08/',
 			],
 			[
-				'name'    => __( 'Home 09', 'neeon' ),
+				'name'    => __( 'Home 09', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot9.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-09/',
 			],
 			[
-				'name'    => __( 'Home 10', 'neeon' ),
+				'name'    => __( 'Home 10', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot10.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-10/',
 			],
 			[
-				'name'    => __( 'Home 11', 'neeon' ),
+				'name'    => __( 'Home 11', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot11.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-11/',
 			],
 			[
-				'name'    => __( 'Home 12', 'neeon' ),
+				'name'    => __( 'Home 12', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot12.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-12/',
 			],
 			[
-				'name'    => __( 'Home 13', 'neeon' ),
+				'name'    => __( 'Home 13', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot13.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-13/',
 			],
 			[
-				'name'    => __( 'Home 14', 'neeon' ),
+				'name'    => __( 'Home 14', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot14.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-14/',
 			],
 			[
-				'name'    => __( 'Home 15', 'neeon' ),
+				'name'    => __( 'Home 15', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot15.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-15/',
 			],
 			[
-				'name'    => __( 'Home 16', 'neeon' ),
+				'name'    => __( 'Home 16', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot16.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-16/',
 			],
 			[
-				'name'    => __( 'Home 17', 'neeon' ),
+				'name'    => __( 'Home 17', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot17.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-17/',
 			],
 			[
-				'name'    => __( 'Home 18', 'neeon' ),
+				'name'    => __( 'Home 18', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot18.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-18/',
 			],
 			[
-				'name'    => __( 'Home 19', 'neeon' ),
+				'name'    => __( 'Home 19', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot19.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-19/',
 			],
 			[
-				'name'    => __( 'Home 20', 'neeon' ),
+				'name'    => __( 'Home 20', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot20.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-20/',
 			],
 			[
-				'name'    => __( 'Home 21', 'neeon' ),
+				'name'    => __( 'Home 21', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot21.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-21/',
 			],
 			[
-				'name'    => __( 'Home 22', 'neeon' ),
+				'name'    => __( 'Home 22', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot22.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-22/',
 			],
 			[
-				'name'    => __( 'Home 23', 'neeon' ),
+				'name'    => __( 'Home 23', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot23.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-23/',
 			],
 			[
-				'name'    => __( 'Home 24', 'neeon' ),
+				'name'    => __( 'Home 24', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot24.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-24/',
 			],
 			[
-				'name'    => __( 'Home 25', 'neeon' ),
+				'name'    => __( 'Home 25', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot25.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-25/',
 			],
 			[
-				'name'    => __( 'Home 26', 'neeon' ),
+				'name'    => __( 'Home 26', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot26.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-26/',
 			],
 			[
-				'name'    => __( 'Home 27', 'neeon' ),
+				'name'    => __( 'Home 27', 'my-plugin-text-domain' ),
 				'preview' => plugin_dir_url( dirname( __FILE__ ) ) . 'assets/images/screenshot27.jpg',
 				'demo'    => 'https://radiustheme.com/demo/wordpress/themes/neeon/home-27/',
 			],
@@ -1094,7 +1094,7 @@ class RT_OCDI_Theme_Config {
 			],
 			[
 				'menu_location' => 'topright',
-				'menu_name'     => 'Main Menu',
+				'menu_name'     => 'Primary Menu',
 			],
 		];
 
